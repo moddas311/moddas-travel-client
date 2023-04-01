@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/AuthProvider'
 import PrimaryButton from '../Components/Button/PrimaryButton'
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   return (
@@ -64,7 +64,7 @@ const Navbar = () => {
                     <div
                       onClick={() => {
                         setIsDropdownOpen(false)
-                        logOut()
+                        logout()
                       }}
                       className='flex items-center cursor-pointer p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform  hover:bg-gray-100 '
                     >
