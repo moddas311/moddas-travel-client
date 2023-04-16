@@ -3,6 +3,7 @@ import BecomeHostForm from "../../Components/Form/BecomeHostForm";
 import { getImageUrl } from "../../api/imageUpload";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { getUserRole, hostRequest } from "../../api/user";
+import { toast } from "react-hot-toast";
 
 const BecomeAHost = () => {
   const { user } = useContext(AuthContext);
@@ -30,7 +31,16 @@ const BecomeAHost = () => {
         email: user?.email,
       };
 
-      hostRequest(hostData).then((data) => console.log(data));
+      hostRequest(hostData)
+        .then((data) => {
+          toast.success(`
+          Host Request Sended.
+          Please Wait for approve!`);
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
   };
 
