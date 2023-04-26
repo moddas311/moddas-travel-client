@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import BecomeHostForm from "../../Components/Form/BecomeHostForm";
-import { getImageUrl } from "../../api/imageUpload";
+import { imageUpload } from "../../api/imageUpload";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { getUserRole, hostRequest } from "../../api/user";
 import { toast } from "react-hot-toast";
@@ -23,7 +23,7 @@ const BecomeAHost = () => {
     event.preventDefault();
     const location = event.target.location.value;
     const image = event.target.image.files[0];
-    getImageUrl(image).then((data) => {
+    imageUpload(image).then((data) => {
       const hostData = {
         location: location,
         documentImg: data,

@@ -8,33 +8,18 @@ import { AuthContext } from "../contexts/AuthProvider";
 // import { saveBooking } from '../api/bookings'
 import toast from "react-hot-toast";
 import { saveBooking } from "../api/booking";
+import { useLocation } from "react-router-dom";
 
 const Checkout = () => {
   const { user } = useContext(AuthContext);
-  const homeData = {
-    _id: "60ehjhedhjdj3434",
-    location: "Dhaka, Bangladesh",
-    title: "Huge Apartment with 4 bedrooms",
-    image: "https://i.ibb.co/YPXktqs/Home1.jpg",
-    from: "17/11/2022",
-    to: "21/11/2022",
-    host: {
-      name: "John Doe",
-      image: "https://i.ibb.co/6JM5VJF/photo-1633332755192-727a05c4013d.jpg",
-      email: "johndoe@gmail.com",
-    },
-    price: 98,
-    total_guest: 4,
-    bedrooms: 2,
-    bathrooms: 2,
-    ratings: 4.8,
-    reviews: 64,
-  };
+
+  const { state: checkoutData } = useLocation();
+
   const [bookingData, setBookingData] = useState({
-    homeId: homeData._id,
-    hostEmail: homeData?.host.email,
+    homeId: checkoutData._id,
+    hostEmail: checkoutData?.host?.email,
     message: "",
-    totalPrice: parseFloat(homeData.price) + 31,
+    totalPrice: parseFloat(checkoutData.price) + 31,
     guestEmail: user?.email,
   });
 
@@ -124,12 +109,18 @@ const Checkout = () => {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <ReviewHouse setSelectedIndex={setSelectedIndex} />
+              <ReviewHouse
+                setSelectedIndex={setSelectedIndex}
+                homeData={{
+                  ...checkoutData?.homeData,
+                  totalNights: checkoutData?.totalNights,
+                }}
+              />
             </Tab.Panel>
             <Tab.Panel>
               <WhosComing
                 setSelectedIndex={setSelectedIndex}
-                host={homeData?.host}
+                host={checkoutData?.host}
                 bookingData={bookingData}
                 setBookingData={setBookingData}
               />

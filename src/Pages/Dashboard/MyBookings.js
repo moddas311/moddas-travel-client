@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getAllBookingsByEmail } from "../../api/booking";
-// import { getAllBookingsByEmail } from '../../api/bookings'
-
 import { AuthContext } from "../../contexts/AuthProvider";
 import Spinner from "../../Components/Spinner/Spinner";
 
