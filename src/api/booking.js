@@ -1,39 +1,64 @@
-// Save a booking
-export const saveBooking = async (bookingData) => {
-  const url = `${process.env.REACT_APP_API_URL}/bookings`;
+// Get all bookings for a user by email
+export const getBookings = async (email) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/bookings?email=${email}`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("moddasTravel")}`,
+      },
+    }
+  );
+  const bookings = await response.json();
+  return bookings;
+};
 
-  const response = await fetch(url, {
-    method: "POST",
+// Get All bookings for admin
+export const getAllBookings = async () => {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/bookings`, {
+    method: "GET",
     headers: {
       "content-type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("moddasTravel")}`,
     },
-    body: JSON.stringify(bookingData),
   });
+  const bookings = await response.json();
+  return bookings;
+};
+
+// Delete a booking
+export const deleteBooking = async (id) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/booking/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("moddasTravel")}`,
+      },
+    }
+  );
 
   const data = await response.json();
-
   return data;
 };
 
-// Get All Bookings for user
-export const getAllBookingsByEmail = async (email) => {
-  const url = `${process.env.REACT_APP_API_URL}/bookings?email=${email}`;
-  console.log(url);
+// Create Payment Intent
 
-  const response = await fetch(url);
-
-  const data = await response.json();
-
-  return data;
-};
-
-// Get All Bookings for Admin
-export const getAllBookings = async () => {
-  const url = `${process.env.REACT_APP_API_URL}/bookings`;
-
-  const response = await fetch(url);
+export const getPaymentIntent = async (price) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/create-payment-intent`,
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("moddasTravel")}`,
+      },
+      body: JSON.stringify({ price }),
+    }
+  );
 
   const data = await response.json();
-
   return data;
 };

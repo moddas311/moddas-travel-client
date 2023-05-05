@@ -15,13 +15,10 @@ export const hostRequest = async (hostData) => {
 };
 
 // Get user role
-export const getUserRole = async (email) => {
+export const getRole = async (email) => {
   const url = `${process.env.REACT_APP_API_URL}/user/${email}`;
-
   const response = await fetch(url);
-
   const user = await response.json();
-
   return user?.role;
 };
 
@@ -29,6 +26,7 @@ export const getUserRole = async (email) => {
 export const getAllUsers = async () => {
   const response = await fetch(`${process.env.REACT_APP_API_URL}/users`);
   const users = await response.json();
+  console.log(users);
   return users;
 };
 

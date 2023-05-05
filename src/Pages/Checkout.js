@@ -5,21 +5,30 @@ import CheckoutCart from "../Components/Checkout/CheckoutCart";
 import WhosComing from "../Components/Checkout/WhosComing";
 import Payment from "../Components/Checkout/Payment";
 import { AuthContext } from "../contexts/AuthProvider";
-// import { saveBooking } from '../api/bookings'
 import toast from "react-hot-toast";
-import { saveBooking } from "../api/booking";
 import { useLocation } from "react-router-dom";
+// import CheckoutForm from "../Components/Form/CheckoutForm";
+// import { Elements } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
+import { saveBooking } from "../api/auth";
 
 const Checkout = () => {
+  // const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
   const { user } = useContext(AuthContext);
-
   const { state: checkoutData } = useLocation();
 
   const [bookingData, setBookingData] = useState({
-    homeId: checkoutData._id,
-    hostEmail: checkoutData?.host?.email,
-    message: "",
-    totalPrice: parseFloat(checkoutData.price) + 31,
+    home: {
+      id: checkoutData?.homeData?._id,
+      image: checkoutData?.homeData?.image,
+      title: checkoutData?.homeData?.title,
+      location: checkoutData?.homeData?.location,
+      from: checkoutData?.homeData?.from,
+      to: checkoutData?.homeData?.to,
+    },
+    hostEmail: checkoutData?.homeData?.host?.email,
+    comment: "",
+    price: parseFloat(checkoutData?.totalPrice),
     guestEmail: user?.email,
   });
 
@@ -27,19 +36,21 @@ const Checkout = () => {
 
   const handleBooking = () => {
     console.log(bookingData);
+
     saveBooking(bookingData)
       .then((data) => {
-        toast.success("Booking Sucessfull");
         console.log(data);
+        toast.success("Booking Successful!");
       })
       .catch((err) => {
-        toast.error(err.message);
         console.log(err);
+        toast.error(err?.message);
       });
   };
 
   return (
     <div className="md:flex gap-5 items-start justify-between sm:mx-10 md:mx-20 px-4 lg:mx-40 py-4">
+      {/* Details */}
       <div className="flex-1">
         <Tab.Group
           selectedIndex={selectedIndex}
@@ -118,21 +129,35 @@ const Checkout = () => {
               />
             </Tab.Panel>
             <Tab.Panel>
+              {/* WhosComing Comp */}
               <WhosComing
                 setSelectedIndex={setSelectedIndex}
-                host={checkoutData?.host}
                 bookingData={bookingData}
                 setBookingData={setBookingData}
+                host={checkoutData?.homeData?.host}
               />
             </Tab.Panel>
+            {/* <Tab.Panel>
+              <Elements stripe={stripePromise}>
+              <CheckoutForm bookingData={bookingData} />
+              </Elements>
+            </Tab.Panel> */}
+
             <Tab.Panel>
+              {/* Payment Comp */}
               <Payment handleBooking={handleBooking} />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>
 
-      <CheckoutCart />
+      {/* Cart */}
+      <CheckoutCart
+        homeData={{
+          ...checkoutData?.homeData,
+          totalNights: checkoutData?.totalNights,
+        }}
+      />
     </div>
   );
 };

@@ -1,20 +1,32 @@
-export const setAuthToken = user => {
+export const setAuthToken = (user) => {
   const currentUser = {
     email: user.email,
-  }
+  };
 
   //   Save user in db & get token
   fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     body: JSON.stringify(currentUser),
   })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
       //Save token in LocalStorage
-      localStorage.setItem('moddasTravel', data.token)
-    })
-}
+      localStorage.setItem("moddasTravel", data.token);
+    });
+};
+
+export const saveBooking = (bookingData) => {
+  // Post method fetch
+  return fetch(`${process.env.REACT_APP_API_URL}/bookings`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("moddasTravel")}`,
+    },
+    body: JSON.stringify(bookingData),
+  });
+};

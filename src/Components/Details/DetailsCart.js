@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import PrimaryButton from ".././Button/PrimaryButton";
 
 const DetailsCart = ({ homeData }) => {
+  console.log(homeData);
   const navigate = useNavigate();
   let totalNights = differenceInCalendarDays(
     new Date(homeData.to),

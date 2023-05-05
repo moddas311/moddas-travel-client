@@ -2,17 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import BecomeHostForm from "../../Components/Form/BecomeHostForm";
 import { imageUpload } from "../../api/imageUpload";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { getUserRole, hostRequest } from "../../api/user";
 import { toast } from "react-hot-toast";
+import { getRole, hostRequest } from "../../api/user";
+
 
 const BecomeAHost = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    getUserRole(user?.email).then((data) => {
+    getRole(user?.email).then((data) => {
       console.log(data);
       setRole(data);
       setLoading(false);

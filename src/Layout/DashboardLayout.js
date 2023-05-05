@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Components/Dashboard/Sidebar";
 import { AuthContext } from "../contexts/AuthProvider";
-import { getUserRole } from "../api/user";
+import { getRole } from "../api/user";
+
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const DashboardLayout = () => {
 
   useEffect(() => {
     setLoading(true);
-    getUserRole(user?.email).then((data) => {
+    getRole(user?.email).then((data) => {
       console.log(data);
       setRole(data);
       setLoading(false);
