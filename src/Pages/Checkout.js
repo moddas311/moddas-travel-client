@@ -3,17 +3,17 @@ import { Tab } from "@headlessui/react";
 import ReviewHouse from "../Components/Checkout/ReviewHouse";
 import CheckoutCart from "../Components/Checkout/CheckoutCart";
 import WhosComing from "../Components/Checkout/WhosComing";
-import Payment from "../Components/Checkout/Payment";
+// import Payment from "../Components/Checkout/Payment";
 import { AuthContext } from "../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
-// import CheckoutForm from "../Components/Form/CheckoutForm";
-// import { Elements } from "@stripe/react-stripe-js";
-// import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { saveBooking } from "../api/auth";
+import CheckoutForm from "../Components/Form/CheckoutForm";
 
 const Checkout = () => {
-  // const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
   const { user } = useContext(AuthContext);
   const { state: checkoutData } = useLocation();
 
@@ -137,16 +137,13 @@ const Checkout = () => {
                 host={checkoutData?.homeData?.host}
               />
             </Tab.Panel>
-            {/* <Tab.Panel>
-              <Elements stripe={stripePromise}>
-              <CheckoutForm bookingData={bookingData} />
-              </Elements>
-            </Tab.Panel> */}
-
             <Tab.Panel>
-              {/* Payment Comp */}
-              <Payment handleBooking={handleBooking} />
+              <Elements stripe={stripePromise}>
+                <CheckoutForm bookingData={bookingData} />
+              </Elements>
             </Tab.Panel>
+
+            <Tab.Panel>{/* Payment Comp */}</Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>
