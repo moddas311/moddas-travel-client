@@ -82,7 +82,7 @@ const MyBookings = () => {
         <>
           <div className="h-screen text-gray-600 gap-5 flex flex-col justify-center items-center pb-16 text-xl lg:text-3xl">
             You haven't booked booked any home yet.
-            <Link to="/all-homes">
+            <Link to="/">
               <PrimaryButton classes="px-6 py-2 text-medium font-semibold rounded-full">
                 Browse Homes
               </PrimaryButton>

@@ -45,7 +45,6 @@ export const deleteBooking = async (id) => {
 };
 
 // Create Payment Intent
-
 export const getPaymentIntent = async (price) => {
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}/create-payment-intent`,

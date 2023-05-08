@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { saveBooking } from "../../api/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { getPaymentIntent } from "../../api/booking";
-import { saveBooking } from "../../api/auth";
+
 
 const CheckoutForm = ({ bookingData }) => {
   const navigate = useNavigate();
