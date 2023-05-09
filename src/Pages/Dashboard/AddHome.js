@@ -16,7 +16,6 @@ const AddHome = () => {
   const [departureDate, setDepartureDate] = useState(
     new Date(arrivalDate.getTime() + 24 * 60 * 60 * 1000)
   );
-  console.log();
   const handleSubmit = (event) => {
     event.preventDefault();
     const location = event.target.location.value;
@@ -63,7 +62,6 @@ const AddHome = () => {
   };
 
   const handleImageChange = (image) => {
-    console.log(image);
     setPreview(window.URL.createObjectURL(image));
     setUploadButtonText(image.name);
   };

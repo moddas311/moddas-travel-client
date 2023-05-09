@@ -10,6 +10,9 @@ const AddServiceForm = ({
   departureDate,
   setDepartureDate,
   loading,
+  handleImageChange,
+  preview,
+  uploadButtonText,
 }) => {
   return (
     <>
@@ -52,7 +55,7 @@ const AddServiceForm = ({
                   <p className="block text-sm text-gray-500">From</p>
                   <DatePicker
                     selected={arrivalDate}
-                    onChange={(data) => setArrivalDate(data)}
+                    onChange={(date) => setArrivalDate(date)}
                     className="w-2/3"
                   />
                 </div>
@@ -64,7 +67,7 @@ const AddServiceForm = ({
                   <p className="block text-sm text-gray-500">To</p>
                   <DatePicker
                     selected={departureDate}
-                    onChange={(data) => setDepartureDate(data)}
+                    onChange={(date) => setDepartureDate(date)}
                     className="w-2/3"
                   />
                 </div>
@@ -138,14 +141,19 @@ const AddServiceForm = ({
                 htmlFor="image"
                 className="p-3 text-center rounded-md cursor-pointer text-gray-500 font-bold border  border-green-600 hover:bg-gradient-to-r hover:from-blue-500 hover:to-green-400 hover:border-white hover:text-white"
               >
+                {uploadButtonText}
                 <input
                   type="file"
+                  onChange={(event) => handleImageChange(event.target.files[0])}
                   name="image"
                   id="image"
                   accept="image/*"
                   hidden
                 />
               </label>
+              {preview && (
+                <img src={preview} className="w-16 h-16" alt="preview_img" />
+              )}
             </div>
 
             <div className="space-y-1 text-sm">
@@ -164,7 +172,7 @@ const AddServiceForm = ({
               type="submit"
               className="block w-full p-3 text-center font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-r from-emerald-500 to-lime-500 hover:bg-gray-200 hover:text-gray-700 focus:shadow-outline focus:outline-none"
             >
-              {loading ? <SmallSpinner /> : " Save & Continue"}
+              {loading ? <SmallSpinner /> : "Save & Continue"}
             </button>
           </form>
         </div>

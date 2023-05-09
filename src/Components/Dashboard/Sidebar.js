@@ -23,7 +23,7 @@ const Sidebar = ({ role, loading }) => {
       {/* Small Screen Navbar */}
       <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
         <div>
-          <div className="block cursor-pointer p-4 font-bold">
+          <div className="block cursor-pointer p-4 font-bold bg-gradient-to-r from-blue-500 to-cyan-500">
             <Link to="/">Moddas Travels</Link>
           </div>
         </div>
@@ -46,7 +46,7 @@ const Sidebar = ({ role, loading }) => {
         <div>
           {/* Branding & Profile Info */}
           <div>
-            <h2 className="text-3xl cursor-pointer font-semibold text-center text-gray-800 ">
+            <h2 className="text-3xl font-semibold text-center text-blue-500 to-cyan-500">
               <Link to="/">Moddas Travel</Link>
             </h2>
             <div className="flex flex-col items-center mt-6 -mx-2">

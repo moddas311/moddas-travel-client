@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { getPaymentIntent } from "../../api/booking";
 
-
 const CheckoutForm = ({ bookingData }) => {
   const navigate = useNavigate();
   const stripe = useStripe();
@@ -102,7 +101,7 @@ const CheckoutForm = ({ bookingData }) => {
           }}
         />
         <button
-          className=" mt-4 bg-gradient-to-r from-emerald-500 to-lime-500 rounded-md text-white px-4 py-1"
+          className=" mt-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-md text-white px-4 py-1"
           type="submit"
           disabled={!stripe || !clientSecret || processing}
         >

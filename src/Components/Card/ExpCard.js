@@ -22,13 +22,13 @@ const ExpCard = ({ exp }) => {
           {exp.title}
         </h2>
         <p className="mt-1">{exp.price}</p>
-        <div className="flex mt-1">
+        {/* <div className="flex mt-1">
           <StarIcon className="h3 w-3 text-green-500" />
           <StarIcon className="h3 w-3 text-green-500" />
           <StarIcon className="h3 w-3 text-green-500" />
           <StarIcon className="h3 w-3 text-green-500" />
           <StarIcon className="h3 w-3 text-green-500" /> <span>{exp.rating}</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

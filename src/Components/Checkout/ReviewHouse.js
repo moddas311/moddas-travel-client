@@ -113,7 +113,7 @@ const ReviewHouse = ({ setSelectedIndex, homeData }) => {
       <br />
 
       <button
-        className="p-2 rounded-md hover:text-gray-100 bg-gradient-to-r from-emerald-500 to-lime-500 text-white"
+        className="p-2 rounded-md hover:text-gray-100 bg-gradient-to-r from-blue-500 to-cyan-500 text-white "
         onClick={() => setSelectedIndex(1)}
       >
         Agree and continue

@@ -1,7 +1,6 @@
 import { format } from "date-fns";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-
 import DeleteModal from "./Modal/DeleteModal";
 import { deleteBooking } from "../api/booking";
 
@@ -32,14 +31,14 @@ const TableRow = ({ booking, fetchBookings }) => {
             <div className="block relative">
               <img
                 alt="profile"
-                src={booking?.home.image}
+                src={booking?.home?.image}
                 className="mx-auto object-cover rounded h-10 w-15 "
               />
             </div>
           </div>
           <div className="ml-3">
             <p className="text-gray-900 whitespace-no-wrap">
-              {booking?.home.title}
+              {booking?.comment}
             </p>
           </div>
         </div>

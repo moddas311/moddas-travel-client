@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
-
-// import PrimaryButton from "../../Components/Button/PrimaryButton";
-// import TableRow from "../../Components/TableRow";
-import { AuthContext } from "../../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 import { getAllBookings } from "../../api/booking";
+import PrimaryButton from "../../Components/Button/PrimaryButton";
+import TableRow from "../../Components/TableRow";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const AllBookings = () => {
   const { user } = useContext(AuthContext);
@@ -65,7 +64,7 @@ const AllBookings = () => {
                       </th>
                     </tr>
                   </thead>
-                  {/* <tbody>
+                  <tbody>
                     {bookings &&
                       bookings.map((booking) => (
                         <TableRow
@@ -74,7 +73,7 @@ const AllBookings = () => {
                           fetchBookings={fetchBookings}
                         />
                       ))}
-                  </tbody> */}
+                  </tbody>
                 </table>
               </div>
             </div>
