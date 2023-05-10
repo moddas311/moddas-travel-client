@@ -8,14 +8,12 @@ import { getRole, hostRequest } from "../../api/user";
 
 const BecomeAHost = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     getRole(user?.email).then((data) => {
-      console.log(data);
       setRole(data);
       setLoading(false);
     });

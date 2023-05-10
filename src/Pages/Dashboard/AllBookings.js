@@ -14,8 +14,6 @@ const AllBookings = () => {
   useEffect(() => {
     fetchBookings();
   }, [user]);
-
-  console.log(bookings);
   return (
     <>
       {bookings && Array.isArray(bookings) && bookings.length > 0 ? (
