@@ -14,7 +14,6 @@ const UpdateServiceForm = ({
   handleImageUpdate,
   loading,
 }) => {
-  console.log(homeData);
   return (
     <>
       <div className="flex justify-center mt-6">

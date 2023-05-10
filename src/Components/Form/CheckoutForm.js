@@ -15,7 +15,6 @@ const CheckoutForm = ({ bookingData }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   const { price, guestName, guestEmail } = bookingData;
-  console.log(clientSecret);
   useEffect(() => {
     getPaymentIntent(price).then((data) => {
       if (data?.clientSecret) {
@@ -62,7 +61,6 @@ const CheckoutForm = ({ bookingData }) => {
     } else {
       setCardError("");
       setTransactionId(paymentIntent.id);
-      console.log(paymentIntent);
 
       //store payment on database
       const data = {

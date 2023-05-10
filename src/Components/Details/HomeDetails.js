@@ -9,7 +9,6 @@ import {
 import React from "react";
 
 const HomeDetails = ({ homeData }) => {
-  console.log(homeData);
   return (
     <div className="flex-1 max-w-lg">
       <div className="flex justify-between">
